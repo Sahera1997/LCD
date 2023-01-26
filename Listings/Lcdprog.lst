@@ -1,0 +1,190 @@
+C51 COMPILER V9.60.7.0   LCDPROG                                                           01/12/2023 23:07:35 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE LCDPROG
+OBJECT MODULE PLACED IN .\Objects\Lcdprog.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Lcdprog.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\L
+                    -cdprog.lst) TABS(2) OBJECT(.\Objects\Lcdprog.obj)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          sbit rs=P3^0;
+   3          sbit rw=P3^1;
+   4          sbit en=P3^2;
+   5          void lcdcmd(unsigned char);
+   6          void lcddat (unsigned char);
+   7          void delay();
+   8          void main()
+   9          {
+  10   1      P2=0x00;
+  11   1      while(1)
+  12   1      {
+  13   2      lcdcmd(0x38);
+  14   2      delay();
+  15   2      lcdcmd(0x01);
+  16   2      delay();
+  17   2      lcdcmd(0x10);
+  18   2      delay();
+  19   2      lcdcmd(0x0c);
+  20   2      delay();
+  21   2      lcdcmd(0xc0);
+  22   2      delay();
+  23   2      lcdcmd(0x80);
+  24   2      delay();
+  25   2      lcdcmd(0x0C);
+  26   2      delay();
+  27   2      lcddat('S');
+  28   2      delay();
+  29   2      lcddat('A');
+  30   2      delay();
+  31   2      lcddat('H');
+  32   2      delay();
+  33   2      lcddat('E');
+  34   2      delay();
+  35   2      lcddat('R');
+  36   2      delay();
+  37   2      lcddat('A');
+  38   2      delay();
+  39   2      lcddat(' ');
+  40   2      delay();
+  41   2      lcddat('B');
+  42   2      delay();
+  43   2      lcddat('I');
+  44   2      delay();
+  45   2      lcddat('B');
+  46   2      delay();
+  47   2      lcddat('I');
+  48   2      delay();
+  49   2      lcddat(' ');
+  50   2      delay();
+  51   2      lcddat('M');
+  52   2      delay();
+  53   2      lcddat('I');
+  54   2      delay();
+C51 COMPILER V9.60.7.0   LCDPROG                                                           01/12/2023 23:07:35 PAGE 2   
+
+  55   2      lcddat('T');
+  56   2      delay();
+  57   2      lcddat('U');
+  58   2      delay();
+  59   2      lcddat(' ');
+  60   2      delay();
+  61   2      lcddat('2');
+  62   2      delay();
+  63   2      lcddat('0');
+  64   2      delay();
+  65   2      lcddat('1');
+  66   2      delay();
+  67   2      lcddat('9');
+  68   2      delay();
+  69   2      lcddat('0');
+  70   2      delay();
+  71   2      lcddat('0');
+  72   2      delay();
+  73   2      lcddat('0');
+  74   2      delay();
+  75   2      lcddat('0');
+  76   2      delay();
+  77   2      lcddat('1');
+  78   2      delay();
+  79   2      lcddat('0');
+  80   2      delay();
+  81   2      lcddat('0');
+  82   2      delay();
+  83   2      lcddat('6');
+  84   2      delay();
+  85   2      lcddat('5');
+  86   2      delay();
+  87   2      lcdcmd(0xC0);
+  88   2      delay();
+  89   2      lcddat('C');
+  90   2      delay();
+  91   2      lcddat('S');
+  92   2      delay();
+  93   2      lcddat('E');
+  94   2      delay();
+  95   2      lcddat(' ');
+  96   2      delay();
+  97   2      lcddat('S');
+  98   2      delay();
+  99   2      lcddat('O');
+ 100   2      delay();
+ 101   2      lcddat('U');
+ 102   2      delay();
+ 103   2      lcddat('T');
+ 104   2      delay();
+ 105   2      lcddat('H');
+ 106   2      delay();
+ 107   2      lcddat('E');
+ 108   2      delay();
+ 109   2      lcddat('A');
+ 110   2      delay();
+ 111   2      lcddat('S');
+ 112   2      delay();
+ 113   2      lcddat('T');
+ 114   2      delay();
+ 115   2      lcddat(' ');
+ 116   2      delay();
+C51 COMPILER V9.60.7.0   LCDPROG                                                           01/12/2023 23:07:35 PAGE 3   
+
+ 117   2      lcddat('U');
+ 118   2      delay();
+ 119   2      lcddat('N');
+ 120   2      delay();
+ 121   2      lcddat('I');
+ 122   2      delay();
+ 123   2      lcddat('V');
+ 124   2      delay();
+ 125   2      lcddat('E');
+ 126   2      delay();
+ 127   2      lcddat('R');
+ 128   2      delay();
+ 129   2      lcddat('S');
+ 130   2      delay();
+ 131   2      lcddat('I');
+ 132   2      delay();
+ 133   2      lcddat('T');
+ 134   2      delay();
+ 135   2      lcddat('Y');
+ 136   2      delay();
+ 137   2      }
+ 138   1      }
+ 139          void lcdcmd(unsigned char val)
+ 140          {
+ 141   1      P2=val;
+ 142   1      rs=0;
+ 143   1      rw=0;
+ 144   1      en=1;
+ 145   1      delay();
+ 146   1      
+ 147   1      en=0;
+ 148   1      }
+ 149          void lcddat(unsigned char val)
+ 150          {
+ 151   1      P2=val;
+ 152   1      rs=1;
+ 153   1      rw=0;
+ 154   1      en=1;
+ 155   1      delay();
+ 156   1      en=0;
+ 157   1      }
+ 158          void delay()
+ 159          {
+ 160   1      unsigned int i;
+ 161   1      for(i=0;i<7000;i++);
+ 162   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    545    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
